@@ -6,7 +6,7 @@ import Link from 'next/link';
 interface AffiliateButtonProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   product: Product;
   variant?: 'default' | 'outline';
-  size?: 'default' | 'lg';
+  size?: 'default' | 'sm' | 'lg';
 }
 
 export function AffiliateButton({ 
@@ -27,6 +27,7 @@ export function AffiliateButton({
   
   const sizes = {
     default: "h-10 px-4 py-2",
+    sm: "h-9 rounded-md px-3",
     lg: "h-12 px-8 py-3 text-base",
   };
 
