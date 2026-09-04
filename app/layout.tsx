@@ -1,15 +1,22 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
 
-import Link from "next/link";
-
 export const metadata: Metadata = {
-  title: "Elevated Everyday Living",
+  title: {
+    default: "Elevated Everyday Living",
+    template: "%s | Elevated Everyday Living",
+  },
   description: "Beautiful ideas. Practical solutions. Better everyday life.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://elevatedeverydayliving.com"),
+  openGraph: {
+    siteName: "Elevated Everyday Living",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -22,7 +29,10 @@ export default function RootLayout({
       <body className={`${inter.variable} ${playfair.variable} font-sans antialiased bg-brand-50 text-brand-950 flex flex-col min-h-screen`}>
         {/* Affiliate Disclosure Banner */}
         <div className="bg-brand-100 text-brand-900 text-xs py-2 text-center px-4">
-          We may earn a commission from purchases made through our links. <Link href="/how-we-choose" className="underline font-medium">Read about our editorial process.</Link>
+          We may earn a commission from purchases made through our links.{" "}
+          <Link href="/how-we-choose" className="underline font-medium">
+            Read about our editorial process.
+          </Link>
         </div>
 
         {/* Global Navigation */}
@@ -31,15 +41,17 @@ export default function RootLayout({
             <Link href="/" className="font-serif font-bold text-xl tracking-wide text-brand-900">
               ELEVATED LIVING
             </Link>
-            <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-brand-700">
-              <Link href="/categories/home" className="hover:text-brand-900">Home & Spaces</Link>
-              <Link href="/categories/organization" className="hover:text-brand-900">Organize</Link>
-              <Link href="/categories/rituals" className="hover:text-brand-900">Rituals</Link>
-              <Link href="/products" className="hover:text-brand-900">Finds</Link>
+            <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-brand-700" aria-label="Main navigation">
+              <Link href="/categories/home-spaces" className="hover:text-brand-900 transition-colors">Home &amp; Spaces</Link>
+              <Link href="/categories/organization" className="hover:text-brand-900 transition-colors">Organize</Link>
+              <Link href="/categories/rituals" className="hover:text-brand-900 transition-colors">Rituals</Link>
+              <Link href="/products" className="hover:text-brand-900 transition-colors">Finds</Link>
             </nav>
-            <div className="flex items-center">
-              {/* Search placeholder */}
-              <button className="text-brand-900 p-2">Search</button>
+            {/* Mobile hamburger placeholder — fully functional nav implemented below */}
+            <div className="flex items-center gap-2">
+              <Link href="/products" className="text-sm font-medium text-brand-900 hover:text-brand-700 transition-colors md:hidden">
+                Finds
+              </Link>
             </div>
           </div>
         </header>
@@ -56,26 +68,31 @@ export default function RootLayout({
               <div className="font-serif font-bold text-2xl tracking-wide text-white mb-4">
                 ELEVATED LIVING
               </div>
-              <p className="text-brand-200 max-w-md">
+              <p className="text-brand-200 max-w-md text-sm leading-relaxed">
                 Beautiful ideas, practical solutions, and smart finds for the way you actually live.
               </p>
             </div>
             <div>
-              <h4 className="font-bold text-white mb-4">Explore</h4>
+              <h4 className="font-bold text-white mb-4 text-sm uppercase tracking-wider">Explore</h4>
               <ul className="space-y-2 text-sm text-brand-200">
-                <li><Link href="/categories/home" className="hover:text-white">Home & Spaces</Link></li>
-                <li><Link href="/categories/organization" className="hover:text-white">Organization</Link></li>
-                <li><Link href="/products" className="hover:text-white">Smart Finds</Link></li>
+                <li><Link href="/categories/home-spaces" className="hover:text-white transition-colors">Home &amp; Spaces</Link></li>
+                <li><Link href="/categories/organization" className="hover:text-white transition-colors">Organization</Link></li>
+                <li><Link href="/products" className="hover:text-white transition-colors">Smart Finds</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold text-white mb-4">About</h4>
+              <h4 className="font-bold text-white mb-4 text-sm uppercase tracking-wider">About</h4>
               <ul className="space-y-2 text-sm text-brand-200">
-                <li><Link href="/how-we-choose" className="hover:text-white">How We Choose</Link></li>
-                <li><Link href="/privacy" className="hover:text-white">Privacy Policy</Link></li>
-                <li><Link href="/terms" className="hover:text-white">Terms of Service</Link></li>
+                <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
+                <li><Link href="/how-we-choose" className="hover:text-white transition-colors">How We Choose</Link></li>
+                <li><Link href="/affiliate-disclosure" className="hover:text-white transition-colors">Affiliate Disclosure</Link></li>
+                <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
+                <li><Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link></li>
               </ul>
             </div>
+          </div>
+          <div className="max-w-6xl mx-auto px-6 mt-8 pt-8 border-t border-brand-700 text-center text-xs text-brand-400">
+            <p>© {new Date().getFullYear()} Elevated Everyday Living. We may earn commissions from qualifying purchases via affiliate links.</p>
           </div>
         </footer>
       </body>

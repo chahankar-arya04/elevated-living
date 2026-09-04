@@ -1,20 +1,24 @@
-import React from 'react';
-import { Product } from '@/types/product';
-import { AffiliateButton } from '@/components/ui/AffiliateButton';
-import { Badge } from '@/components/ui/Badge';
-import { isPublishableProduct } from '@/lib/data';
-import Link from 'next/link';
-import Image from 'next/image';
+import React from "react";
+import { Product } from "@/types/product";
+import { AffiliateButton } from "@/components/ui/AffiliateButton";
+import { Badge } from "@/components/ui/Badge";
+import { isPublishableProduct } from "@/lib/data";
+import Link from "next/link";
 
 interface ProductCardProps {
   product: Product;
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-  // Final safety check just in case
+  // Final safety check — never render a non-publishable product
   if (!isPublishableProduct(product)) {
     return null;
   }
+
+  const hasValidAffiliate =
+    product.affiliate?.status === "ACTIVE" &&
+    product.affiliate?.url &&
+    product.affiliate.url.startsWith("http");
 
   return (
     <div className="group relative flex flex-col rounded-lg border border-brand-200 bg-white p-4 shadow-soft transition-shadow hover:shadow-md">
@@ -24,18 +28,23 @@ export function ProductCard({ product }: ProductCardProps) {
           Editorial Pick
         </Badge>
       )}
-      
+
       {/* Image Area */}
-      <Link href={`/products/${product.slug}`} className="relative aspect-square w-full overflow-hidden rounded-md bg-brand-50 mb-4">
-        {/* Replace with Next.js Image in real deployment once domains are whitelisted */}
-        <div className="absolute inset-0 flex items-center justify-center text-brand-300">
-          <img 
-            src={product.productImage || "/placeholder.jpg"} 
-            alt={product.name}
-            className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
-            loading="lazy"
-          />
-        </div>
+      <Link
+        href={`/products/${product.slug}`}
+        className="relative aspect-square w-full overflow-hidden rounded-md bg-brand-50 mb-4 block"
+        aria-label={`View ${product.name}`}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={product.productImage || "/placeholder.jpg"}
+          alt={product.name}
+          className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+          loading="lazy"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = "/placeholder.jpg";
+          }}
+        />
       </Link>
 
       {/* Content */}
@@ -44,7 +53,7 @@ export function ProductCard({ product }: ProductCardProps) {
           {product.brand}
         </div>
         <Link href={`/products/${product.slug}`} className="hover:underline">
-          <h3 className="text-lg font-serif font-bold text-brand-900 mb-2 leading-tight">
+          <h3 className="text-base font-serif font-bold text-brand-900 mb-2 leading-tight">
             {product.name}
           </h3>
         </Link>
@@ -53,19 +62,23 @@ export function ProductCard({ product }: ProductCardProps) {
         </p>
 
         {/* Footer Area */}
-        <div className="flex items-end justify-between mt-auto">
-          <div>
-            <div className="text-lg font-bold text-brand-900">
-              {product.price.current > 0 ? (
-                <>
-                  {product.price.currency === 'INR' ? '₹' : '$'}
-                  {product.price.current.toLocaleString()}
-                </>
-              ) : 'Check Price'}
-            </div>
+        <div className="flex items-end justify-between mt-auto gap-2">
+          <div className="text-base font-bold text-brand-900 shrink-0">
+            {product.price.current > 0
+              ? `${product.price.currency === "INR" ? "₹" : "$"}${product.price.current.toLocaleString()}`
+              : "Check Price"}
           </div>
-          
-          <AffiliateButton product={product} size="sm" />
+
+          {hasValidAffiliate ? (
+            <AffiliateButton product={product} size="sm" />
+          ) : (
+            <Link
+              href={`/products/${product.slug}`}
+              className="inline-flex items-center justify-center h-9 px-3 rounded-md text-sm font-medium border border-brand-200 text-brand-900 hover:bg-brand-50 transition-colors"
+            >
+              Details →
+            </Link>
+          )}
         </div>
       </div>
     </div>
