@@ -1,5 +1,4 @@
 import * as React from "react"
-import { Slot } from "@radix-ui/react-slot" // We will use standard React since we aren't installing Radix yet
 import { cn } from "@/lib/utils"
 
 export interface ButtonProps
