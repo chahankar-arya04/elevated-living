@@ -1,0 +1,76 @@
+{
+  "id": "prod_template_001",
+  "slug": "template-product",
+  "name": "Template Product Name",
+  "brand": "Template Brand",
+  "category": "Home",
+  "subcategory": "Storage",
+  
+  "shortDescription": "A concise 1-2 sentence description.",
+  "fullDescription": "A detailed description explaining the features and benefits.",
+  "problemSolved": "Explains what specific everyday problem this solves.",
+  "whyWeRecommend": "Editorial reason for selection.",
+  "pros": ["Pro 1", "Pro 2"],
+  "cons": ["Con 1", "Con 2"],
+  "editorialNotes": "Internal notes.",
+  
+  "price": {
+    "current": 0,
+    "currency": "USD",
+    "lastChecked": "2024-01-01T00:00:00Z"
+  },
+  
+  "rating": "Not verified",
+  "reviewCount": "Not verified",
+  "reviewQuality": "UNKNOWN",
+  "reviewCheckedDate": "2024-01-01T00:00:00Z",
+  
+  "productImage": "/images/products/placeholder.jpg",
+  "galleryImages": [],
+  
+  "merchant": "Amazon",
+  "productUrl": "https://www.amazon.com/dp/B000000000",
+  
+  "affiliate": {
+    "program": "Amazon Associates",
+    "url": "",
+    "status": "PENDING",
+    "country": "US",
+    "lastChecked": "2024-01-01T00:00:00Z"
+  },
+  
+  "tags": ["organization", "kitchen"],
+  "evergreen": true,
+  
+  "safetyStatus": "UNKNOWN",
+  "fraudRisk": "UNKNOWN",
+  "status": "RESEARCH",
+  
+  "sellerVerified": false,
+  
+  "availability": {
+    "countries": ["US"],
+    "regions": []
+  },
+  
+  "verification": {
+    "lastChecked": "2024-01-01T00:00:00Z",
+    "productVerified": false,
+    "sellerVerified": false,
+    "safetyChecked": false,
+    "reviewQualityChecked": false,
+    "affiliateChecked": false,
+    "sources": [
+      {
+        "name": "Manufacturer",
+        "url": "https://example.com",
+        "type": "manufacturer",
+        "checkedDate": "2024-01-01T00:00:00Z"
+      }
+    ]
+  },
+  
+  "featured": false,
+  "dateAdded": "2024-01-01T00:00:00Z",
+  "lastVerified": "2024-01-01T00:00:00Z"
+}
