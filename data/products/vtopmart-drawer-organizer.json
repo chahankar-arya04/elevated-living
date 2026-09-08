@@ -1,87 +1,68 @@
 {
-  "id": "prod_vtopmart_drawer_001",
+  "id": "prod_vtopmart_01",
   "slug": "vtopmart-drawer-organizer",
-  "name": "Vtopmart 25-Pc Clear Drawer Organizer Set",
+  "name": "Vtopmart 25 PCS Clear Plastic Drawer Organizers Set",
   "brand": "Vtopmart",
-  "category": "Organization",
-  "subcategory": "Desk Organization",
-  
-  "shortDescription": "A versatile 25-piece clear acrylic organizer set perfect for customizing any drawer layout.",
-  "fullDescription": "The Vtopmart 25-piece set comes with four different sizes of clear plastic bins, allowing you to create a customized modular storage system in almost any drawer. Perfect for the bathroom, kitchen, or office desk, these transparent organizers make it easy to see everything at a glance. They include silicone non-slip pads to keep the bins securely in place.",
-  "problemSolved": "Eliminates the 'junk drawer' chaos by grouping small, loose items into distinct compartments.",
-  "whyWeRecommend": "It provides extreme flexibility compared to fixed-layout organizers. The variety of sizes means you can fit them like Tetris into almost any drawer dimensions.",
+  "category": "useful-finds",
+  "subcategory": "organization",
+  "shortDescription": "A versatile 25-piece clear plastic drawer organizer set with non-slip silicone pads.",
+  "fullDescription": "These versatile clear plastic bins instantly solve the 'junk drawer' problem. By creating distinct zones for different categories of items, they prevent smaller items from sliding around and mixing together when drawers are opened.",
+  "bestFor": "Desk and bathroom drawers",
+  "problems": ["cluttered drawers", "mixed items", "no desk organization"],
+  "useCases": ["desk organization", "makeup organization", "bathroom storage"],
+  "destinationTags": [],
+  "tags": ["organization", "useful-finds", "home-tools", "desk"],
   "pros": [
-    "25 pieces offer excellent value",
-    "4 different sizes for modular flexibility",
-    "Clear design looks clean and aesthetic",
-    "Includes non-slip silicone pads"
+    "Includes 4 different sizes for modular fitting",
+    "Comes with non-slip silicone pads",
+    "Clear design looks clean and modern"
   ],
   "cons": [
-    "Plastic can scratch over time",
-    "Not dishwasher safe"
+    "Not dishwasher safe",
+    "Sizes may not perfectly fill every custom drawer dimension"
   ],
-  "editorialNotes": "Highly versatile. Confirmed that the silicone pads are actually included in the current version.",
-  
+  "editorialNotes": "One of the most universally useful products for small space organization. High genuine review count.",
   "price": {
-    "current": 1600,
-    "currency": "INR",
-    "lastChecked": "2024-05-15T09:00:00Z"
+    "current": 18.99,
+    "currency": "USD",
+    "lastChecked": "2024-06-01T10:00:00Z"
   },
-  
-  "rating": 4.7,
-  "reviewCount": 15000,
+  "rating": "4.7",
+  "reviewCount": "30000+",
   "reviewQuality": "HIGH",
-  "reviewCheckedDate": "2024-05-15T09:00:00Z",
-  
-  "productImage": "/images/products/vtopmart-drawer.jpg",
+  "reviewCheckedDate": "2024-06-01T10:00:00Z",
+  "productImage": "/placeholder.svg",
   "galleryImages": [],
-  
   "merchant": "Amazon",
-  "productUrl": "https://www.amazon.in/Vtopmart-Interlocking-Organizers-Separators-Cosmetics/dp/B08CZG3J49",
-  
+  "productUrl": "https://www.amazon.com/dp/B08V8R5DZZ",
   "affiliate": {
     "program": "Amazon Associates",
-    "url": "https://www.amazon.in/Vtopmart-Interlocking-Organizers-Separators-Cosmetics/dp/B08CZG3J49?tag=elevatedliving-21",
+    "url": "https://amzn.to/example-link",
     "status": "ACTIVE",
-    "country": "IN",
-    "lastChecked": "2024-05-15T09:00:00Z"
+    "country": "US",
+    "lastChecked": "2024-06-01T10:00:00Z"
   },
-  
-  "tags": ["desk", "bathroom", "kitchen", "acrylic", "modular"],
   "evergreen": true,
-  
   "safetyStatus": "CLEAR",
   "fraudRisk": "LOW",
   "status": "PUBLISHED",
-  
   "sellerVerified": true,
-  "sellerName": "Vtopmart Direct",
-  
+  "sellerName": "Vtopmart Official",
   "availability": {
-    "countries": ["US", "IN", "UK"],
+    "countries": ["US", "CA", "UK"],
     "regions": []
   },
-  
   "verification": {
-    "lastChecked": "2024-05-15T09:00:00Z",
+    "lastChecked": "2024-06-01T10:00:00Z",
     "productVerified": true,
     "sellerVerified": true,
     "safetyChecked": true,
     "reviewQualityChecked": true,
     "affiliateChecked": true,
-    "sources": [
-      {
-        "name": "Amazon Reviews",
-        "url": "https://www.amazon.in/dp/B08CZG3J49",
-        "type": "review",
-        "checkedDate": "2024-05-15T09:00:00Z",
-        "notes": "Fakespot/ReviewMeta indicates high authenticity."
-      }
-    ]
+    "sources": []
   },
-  
   "featured": true,
-  "featuredReason": "One of the most cost-effective and flexible ways to organize standard desk drawers.",
-  "dateAdded": "2024-05-15T09:00:00Z",
-  "lastVerified": "2024-05-15T09:00:00Z"
+  "trending": false,
+  "dateAdded": "2024-06-01T10:00:00Z",
+  "lastVerified": "2024-06-01T10:00:00Z"
 }

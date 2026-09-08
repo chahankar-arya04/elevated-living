@@ -3,13 +3,18 @@
   "slug": "template-product",
   "name": "Template Product Name",
   "brand": "Template Brand",
-  "category": "Home",
-  "subcategory": "Storage",
+  "category": "skin",
+  "subcategory": "serums",
   
   "shortDescription": "A concise 1-2 sentence description.",
   "fullDescription": "A detailed description explaining the features and benefits.",
-  "problemSolved": "Explains what specific everyday problem this solves.",
-  "whyWeRecommend": "Editorial reason for selection.",
+  
+  "bestFor": "Oily skin types",
+  "problems": ["acne", "excess sebum", "large pores"],
+  "useCases": ["daily routine", "summer skincare"],
+  "destinationTags": [],
+  "tags": ["skincare", "serum", "acne-prone"],
+  
   "pros": ["Pro 1", "Pro 2"],
   "cons": ["Con 1", "Con 2"],
   "editorialNotes": "Internal notes.",
@@ -25,7 +30,7 @@
   "reviewQuality": "UNKNOWN",
   "reviewCheckedDate": "2024-01-01T00:00:00Z",
   
-  "productImage": "/images/products/placeholder.jpg",
+  "productImage": "/placeholder.svg",
   "galleryImages": [],
   
   "merchant": "Amazon",
@@ -39,14 +44,13 @@
     "lastChecked": "2024-01-01T00:00:00Z"
   },
   
-  "tags": ["organization", "kitchen"],
   "evergreen": true,
-  
   "safetyStatus": "UNKNOWN",
   "fraudRisk": "UNKNOWN",
   "status": "RESEARCH",
   
   "sellerVerified": false,
+  "sellerName": "Brand Store",
   
   "availability": {
     "countries": ["US"],
@@ -60,17 +64,11 @@
     "safetyChecked": false,
     "reviewQualityChecked": false,
     "affiliateChecked": false,
-    "sources": [
-      {
-        "name": "Manufacturer",
-        "url": "https://example.com",
-        "type": "manufacturer",
-        "checkedDate": "2024-01-01T00:00:00Z"
-      }
-    ]
+    "sources": []
   },
   
   "featured": false,
+  "trending": false,
   "dateAdded": "2024-01-01T00:00:00Z",
   "lastVerified": "2024-01-01T00:00:00Z"
 }

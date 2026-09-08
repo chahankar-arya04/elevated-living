@@ -3,17 +3,17 @@ import { ProductCard } from '@/components/product/ProductCard';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Smart Finds | Elevated Everyday Living',
-  description: 'Curated products and smart finds for elevated everyday living.',
+  title: 'All Finds | Elevated Everyday Living',
+  description: 'Curated products, problem-solving tools, and smart finds for everyday living.',
 };
 
 export default function ProductsIndexPage() {
   const products = getPublishableProducts();
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
       <div className="mb-12">
-        <h1 className="text-4xl font-serif font-bold text-brand-900 mb-4">Smart Finds</h1>
+        <h1 className="text-4xl font-serif font-bold text-brand-900 mb-4">All Finds</h1>
         <p className="text-lg text-brand-700 max-w-2xl">
           A curated collection of practical, beautiful, and highly-rated products that solve everyday problems. 
           Every item is rigorously checked against our editorial standards.

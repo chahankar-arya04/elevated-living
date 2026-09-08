@@ -78,11 +78,11 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
           <div className="aspect-square bg-white border border-brand-200 rounded-lg overflow-hidden flex items-center justify-center p-8">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={p.productImage || "/placeholder.jpg"}
+              src={p.productImage || "/placeholder.svg"}
               alt={p.name}
               className="object-contain w-full h-full"
               onError={(e) => {
-                (e.target as HTMLImageElement).src = "/placeholder.jpg";
+                (e.target as HTMLImageElement).src = "/placeholder.svg";
               }}
             />
           </div>

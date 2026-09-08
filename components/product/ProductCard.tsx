@@ -46,10 +46,10 @@ export function ProductCard({ product, variant = "default", className }: Product
         <div className="w-14 h-14 rounded-md bg-brand-100 shrink-0 overflow-hidden flex items-center justify-center text-brand-400 text-xs">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={product.productImage || "/placeholder.jpg"}
+            src={product.productImage || "/placeholder.svg"}
             alt={product.name}
             className="object-cover w-full h-full"
-            onError={(e) => { (e.target as HTMLImageElement).src = "/placeholder.jpg"; }}
+            onError={(e) => { (e.target as HTMLImageElement).src = "/placeholder.svg"; }}
           />
         </div>
         <div className="flex-1 min-w-0">
@@ -81,10 +81,10 @@ export function ProductCard({ product, variant = "default", className }: Product
         <div className="w-24 h-24 rounded-lg bg-brand-100 shrink-0 overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={product.productImage || "/placeholder.jpg"}
+            src={product.productImage || "/placeholder.svg"}
             alt={product.name}
             className="object-cover w-full h-full"
-            onError={(e) => { (e.target as HTMLImageElement).src = "/placeholder.jpg"; }}
+            onError={(e) => { (e.target as HTMLImageElement).src = "/placeholder.svg"; }}
           />
         </div>
         <div className="flex flex-col justify-between flex-1 min-w-0">
@@ -130,10 +130,10 @@ export function ProductCard({ product, variant = "default", className }: Product
           )}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={product.productImage || "/placeholder.jpg"}
+            src={product.productImage || "/placeholder.svg"}
             alt={product.name}
             className="object-cover w-full h-full"
-            onError={(e) => { (e.target as HTMLImageElement).src = "/placeholder.jpg"; }}
+            onError={(e) => { (e.target as HTMLImageElement).src = "/placeholder.svg"; }}
           />
         </div>
         <div className="p-5 flex flex-col flex-grow">
@@ -173,11 +173,11 @@ export function ProductCard({ product, variant = "default", className }: Product
       <Link href={`/products/${product.slug}`} className="relative aspect-square bg-brand-100 overflow-hidden block">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={product.productImage || "/placeholder.jpg"}
+          src={product.productImage || "/placeholder.svg"}
           alt={product.name}
           className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
           loading="lazy"
-          onError={(e) => { (e.target as HTMLImageElement).src = "/placeholder.jpg"; }}
+          onError={(e) => { (e.target as HTMLImageElement).src = "/placeholder.svg"; }}
         />
         {product.featured && (
           <span className="absolute top-2 left-2 text-xs font-semibold bg-brand-800 text-white px-2 py-0.5 rounded-full">
