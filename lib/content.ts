@@ -81,26 +81,11 @@ export function getArticlesByPillar(pillar: string): Article[] {
 const ALL_PILLARS = ['skin', 'hair', 'trending', 'useful-finds', 'style', 'travel'];
 
 export function getAllArticles(): Article[] {
-  // Also read legacy blog/ directory for backwards compatibility
-  const legacyDir = path.join(process.cwd(), 'content', 'blog');
-  const legacyArticles: Article[] = [];
-  if (fs.existsSync(legacyDir)) {
-    const files = fs.readdirSync(legacyDir).filter((f: string) => f.endsWith('.json'));
-    for (const file of files) {
-      try {
-        const raw = fs.readFileSync(path.join(legacyDir, file), 'utf8');
-        const data = JSON.parse(raw);
-        legacyArticles.push({ pillar: 'useful-finds', ...data } as Article);
-      } catch { /* skip */ }
-    }
-  }
-
   const pillarArticles = ALL_PILLARS.flatMap(p => getArticlesByPillar(p));
-  const all = [...pillarArticles, ...legacyArticles];
 
   // Deduplicate by slug
   const seen = new Set<string>();
-  return all
+  return pillarArticles
     .filter(a => {
       if (seen.has(a.slug)) return false;
       seen.add(a.slug);
