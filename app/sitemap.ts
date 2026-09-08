@@ -5,14 +5,7 @@ import { getAllArticles } from "@/lib/content";
 const baseUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://elevatedeverydayliving.com";
 
-const CATEGORY_SLUGS = [
-  "home-spaces",
-  "organization",
-  "rituals",
-  "better-living",
-  "finds",
-  "ideas",
-];
+const PILLARS = ["skin", "hair", "trending", "useful-finds", "style", "travel"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const products = getPublishableProducts();
@@ -26,17 +19,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const articleUrls = articles.map((article) => ({
-    url: `${baseUrl}/blog/${article.slug}`,
+    url: `${baseUrl}/${article.pillar}/${article.slug}`,
     lastModified: new Date(article.date),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
+    changeFrequency: "weekly" as const,
+    priority: 0.75,
   }));
 
-  const categoryUrls = CATEGORY_SLUGS.map((slug) => ({
-    url: `${baseUrl}/categories/${slug}`,
+  const pillarUrls = PILLARS.map((pillar) => ({
+    url: `${baseUrl}/${pillar}`,
     lastModified: new Date(),
-    changeFrequency: "weekly" as const,
-    priority: 0.7,
+    changeFrequency: "daily" as const,
+    priority: 0.8,
   }));
 
   return [
@@ -47,8 +40,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/affiliate-disclosure`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.4 },
     { url: `${baseUrl}/privacy`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
     { url: `${baseUrl}/terms`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
-    // /go/* and /contact intentionally excluded from sitemap
-    ...categoryUrls,
+    // /go/* intentionally excluded (affiliate redirects should not be indexed)
+    ...pillarUrls,
     ...productUrls,
     ...articleUrls,
   ];

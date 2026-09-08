@@ -1,53 +1,111 @@
-# Elevated Everyday Living
+# Elevated Everyday Living — Content Guide
 
-A modern, fast, editorial commerce platform optimized for Pinterest and SEO.
+## Adding a New Article
 
-## Architecture
+Create a JSON file in the correct content pillar directory:
 
-This site uses a **Git-based CMS**. 
-Products are stored as strict JSON files. The application runs on Next.js App Router and utilizes a build-time validation script to ensure no unsafe data is ever deployed.
+| Topic | Directory |
+|---|---|
+| Skincare | `content/skin/` |
+| Haircare | `content/hair/` |
+| Trending products | `content/trending/` |
+| Useful finds & tools | `content/useful-finds/` |
+| Style & outfits | `content/style/` |
+| Travel & destinations | `content/travel/` |
 
-## Local Setup
+### Required JSON fields
 
-Since this is a standard Next.js app:
-1. `npm install`
-2. `npm run dev`
-3. View at `http://localhost:3000`
+```json
+{
+  "slug": "url-friendly-slug",
+  "title": "Article Title",
+  "pinterestTitle": "Hook-style title for Pinterest pin",
+  "description": "1–2 sentence summary (shown in cards)",
+  "pinterestDescription": "Pin description — max 500 chars. Include hashtags.",
+  "author": "Elevated Editorial",
+  "date": "2026-09-01T10:00:00Z",
+  "pillar": "skin | hair | trending | useful-finds | style | travel",
+  "category": "Human-readable category name",
+  "primaryKeyword": "main seo keyword",
+  "secondaryKeywords": ["keyword 2", "keyword 3"],
+  "tags": ["tag1", "tag2"],
+  "featured": false,
+  "relatedSlugs": ["other-article-slug"],
+  "content": "<h2>HTML content here</h2><p>Paragraphs, headings, lists.</p>"
+}
+```
 
-## Workflow: How to Add a New Product
+### For travel articles, add:
 
-We intentionally avoided a complex CMS backend. Adding a product is simple and safe.
+```json
+{
+  "destination": "Manali",
+  "season": "June"
+}
+```
 
-1. **Copy the Template**
-   Duplicate `/data/products/template.json` and name it `your-product-slug.json`.
+### Publishing an article
 
-2. **Fill in Data**
-   Populate the required fields. Pay close attention to:
-   - `status`: Must be `VERIFIED` or `PUBLISHED` to be public.
-   - `safetyStatus`: Must be `CLEAR`.
-   - `fraudRisk`: Must be `LOW` or `MODERATE`.
-   - `affiliate`: Populate the affiliate network URL.
+```bash
+# 1. Create the JSON file in the correct content/ subdirectory
+# 2. Validate and build
+git add content/
+git commit -m "content: add [article title]"
+git push
+# Vercel will automatically deploy
+```
 
-3. **Validate & Commit**
-   Run `npm run validate` locally (optional, Vercel will do this automatically).
-   ```bash
-   git add data/products/your-product-slug.json
-   git commit -m "Add product: [Name]"
-   git push
-   ```
+## Adding a New Product
 
-4. **Vercel Automatic Deployment**
-   Once pushed, Vercel will automatically build the site. 
-   - The pre-build script `validate-data.mjs` will run.
-   - If you accidentally pushed a `RECALLED` product or left missing URLs, the build will **FAIL**, preventing unsafe data from reaching production.
-   - If successful, the site updates immediately.
+See `data/products/template.json` for the full product template.
 
-## Updating Affiliate Links
+Products must have:
+- `status: "VERIFIED"` or `"PUBLISHED"`
+- `safetyStatus: "CLEAR"` or `"PROVISIONAL"`
+- `fraudRisk` must NOT be `"HIGH"`
+- `affiliate.url` must be a real, valid URL
 
-To update an affiliate link, simply edit the `affiliate.url` in the specific product's JSON file.
-Because all product buttons use `/go/[product-slug]`, you do NOT need to edit any UI components or articles. 
-The internal redirect system will immediately use the new link on the next build.
+```bash
+git add data/products/
+git commit -m "content: add product [name]"
+git push
+```
 
-## How to Add an Article
+## Content Pillars & URL Structure
 
-Articles are stored in `/content/blog/` as MDX files. You can reference product slugs directly inside the MDX to render `RelatedProducts` components.
+| Pillar | URL | Example Article |
+|---|---|---|
+| Skincare | `/skin/[slug]` | `/skin/skincare-mistakes` |
+| Haircare | `/hair/[slug]` | `/hair/hair-care-mistakes` |
+| Trending | `/trending/[slug]` | `/trending/viral-products-worth-buying` |
+| Useful Finds | `/useful-finds/[slug]` | `/useful-finds/problem-solving-tools` |
+| Style | `/style/[slug]` | `/style/capsule-wardrobe-guide` |
+| Travel | `/travel/[slug]` | `/travel/manali-june-outfit-guide` |
+
+## Pinterest Funnel
+
+```
+Pinterest Pin (pinterestTitle)
+        ↓
+Website Article (/pillar/slug)
+        ↓
+Problem solved + practical tips
+        ↓
+Product recommendations
+        ↓
+/go/[product-slug]  (internal redirect)
+        ↓
+Affiliate merchant website
+        ↓
+Conversion
+```
+
+## Safety Rules
+
+Products NEVER appear publicly if:
+- `status` is `REJECTED`, `FLAGGED`, or `RECALLED`
+- `safetyStatus` is `RECALLED` or `FLAGGED`
+- `fraudRisk` is `HIGH`
+- `affiliate.url` is missing or invalid
+
+The build will FAIL if these rules are violated. This is intentional.
