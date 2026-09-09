@@ -1,3 +1,5 @@
+import { Badge } from '@/components/ui/Badge';
+import { AffiliateButton } from '@/components/ui/AffiliateButton';
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const product = getProductBySlug(params.slug);
   if (!product) return {};

@@ -23,7 +23,7 @@ export default function HowWeChoosePage() {
           <li><strong>Safety First:</strong> We do not recommend products with unresolved safety concerns or active recalls. We maintain a strict internal safety gate.</li>
           <li><strong>Seller Reliability:</strong> A good product from a fraudulent seller is a bad recommendation. We verify seller trust.</li>
           <li><strong>Authentic Reviews:</strong> We look beyond the star rating to identify manipulated reviews and ensure the feedback is from real users.</li>
-          <li><strong>Value:</strong> Expensive isn't always better. We highlight products that provide excellent value for the price.</li>
+          <li><strong>Value:</strong> Expensive isn&apos;t always better. We highlight products that provide excellent value for the price.</li>
         </ul>
 
         <h2 className="text-2xl font-bold text-brand-900 mt-10">Our Affiliate Policy</h2>
