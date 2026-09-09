@@ -1,21 +1,4 @@
-import { getProductBySlug, getPublishableProducts } from "@/lib/data";
-import { notFound } from "next/navigation";
-import { AffiliateButton } from "@/components/ui/AffiliateButton";
-import { Badge } from "@/components/ui/Badge";
-import { Metadata } from "next";
-
-export async function generateStaticParams() {
-  const products = getPublishableProducts();
-  return products.map((product) => ({
-    slug: product.slug,
-  }));
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const product = getProductBySlug(params.slug);
   if (!product) return {};
   return {

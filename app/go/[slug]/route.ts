@@ -22,7 +22,7 @@ export async function GET(
 
   if (!targetUrl || !targetUrl.startsWith("http")) {
     // No valid outbound URL — redirect to product page instead of 404
-    return NextResponse.redirect(new URL(`/products/${slug}`, request.url));
+    return NextResponse.redirect(new URL(`/products/item/${slug}`, request.url));
   }
 
   // Redirect to the affiliate destination with 302 (temporary)

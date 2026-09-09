@@ -12,7 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const articles = getAllArticles();
 
   const productUrls = products.map((product) => ({
-    url: `${baseUrl}/products/${product.slug}`,
+    url: `${baseUrl}/products/item/${product.slug}`,,
     lastModified: new Date(product.lastVerified),
     changeFrequency: "weekly" as const,
     priority: 0.8,

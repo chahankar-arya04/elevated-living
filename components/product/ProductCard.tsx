@@ -52,7 +52,7 @@ export function ProductCard({ product, variant = "default", className }: Product
         <div className="flex-1 min-w-0">
           <p className="text-xs text-brand-500 truncate">{product.brand || product.category}</p>
           <Link
-            href={`/products/${product.slug}`}
+            href={`/products/item/${product.slug}`}
             className="text-sm font-semibold text-brand-900 hover:underline line-clamp-1"
           >
             {product.name}
@@ -98,7 +98,7 @@ export function ProductCard({ product, variant = "default", className }: Product
           <div>
             <p className="text-xs text-brand-500">{product.brand}</p>
             <Link
-              href={`/products/${product.slug}`}
+              href={`/products/item/${product.slug}`}
               className="font-serif font-bold text-brand-900 text-sm leading-snug hover:underline line-clamp-2"
             >
               {product.name}
@@ -122,7 +122,7 @@ export function ProductCard({ product, variant = "default", className }: Product
               </Link>
             ) : (
               <Link
-                href={`/products/${product.slug}`}
+                href={`/products/item/${product.slug}`}
                 className="text-xs text-brand-600 hover:underline"
               >
                 Details &rarr;
@@ -162,7 +162,7 @@ export function ProductCard({ product, variant = "default", className }: Product
           <p className="text-xs text-brand-500 uppercase tracking-wider font-semibold mb-1">
             {product.brand}
           </p>
-          <Link href={`/products/${product.slug}`}>
+          <Link href={`/products/item/${product.slug}`}>
             <h3 className="font-serif font-bold text-brand-900 text-lg leading-tight mb-2 hover:underline">
               {product.name}
             </h3>
@@ -188,7 +188,7 @@ export function ProductCard({ product, variant = "default", className }: Product
               </Link>
             ) : (
               <Link
-                href={`/products/${product.slug}`}
+                href={`/products/item/${product.slug}`}
                 className="text-sm text-brand-700 underline"
               >
                 Details
@@ -209,7 +209,7 @@ export function ProductCard({ product, variant = "default", className }: Product
       )}
     >
       <Link
-        href={`/products/${product.slug}`}
+        href={`/products/item/${product.slug}`}
         className="relative aspect-square bg-brand-100 overflow-hidden block"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -232,7 +232,7 @@ export function ProductCard({ product, variant = "default", className }: Product
         <p className="text-xs text-brand-500 uppercase tracking-wider font-semibold mb-1">
           {product.brand || product.category}
         </p>
-        <Link href={`/products/${product.slug}`} className="hover:underline">
+        <Link href={`/products/item/${product.slug}`} className="hover:underline">
           <h3 className="font-serif font-bold text-brand-900 text-sm leading-snug mb-2">
             {product.name}
           </h3>
@@ -253,7 +253,7 @@ export function ProductCard({ product, variant = "default", className }: Product
             </Link>
           ) : (
             <Link
-              href={`/products/${product.slug}`}
+              href={`/products/item/${product.slug}`}
               className="text-xs text-brand-700 border border-brand-200 px-3 py-1.5 rounded-md hover:bg-brand-50 transition-colors"
             >
               Details &rarr;

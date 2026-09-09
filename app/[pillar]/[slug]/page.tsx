@@ -202,7 +202,7 @@ export default function ArticlePage({
                   </Link>
                 </div>
                 <Link
-                  href={`/products/${product.slug}`}
+                  href={`/products/item/${product.slug}`}
                   className="text-xs text-brand-500 hover:text-brand-700 mt-2 hover:underline"
                 >
                   Full details &amp; verification
