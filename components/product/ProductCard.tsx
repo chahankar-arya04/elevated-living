@@ -2,8 +2,6 @@ import React from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 export interface ProductCardData {
   id: string;
   slug: string;
@@ -25,36 +23,38 @@ interface ProductCardProps {
   product: ProductCardData;
   variant?: "default" | "compact" | "featured" | "horizontal";
   className?: string;
-  onClickEvent?: string; // analytics event name
 }
-
-// ─── ProductCard ──────────────────────────────────────────────────────────────
 
 export function ProductCard({ product, variant = "default", className }: ProductCardProps) {
   const hasAffiliate =
     product.affiliate?.status === "ACTIVE" &&
-    product.affiliate?.url?.startsWith("http");
+    !!product.affiliate?.url?.startsWith("http");
 
   const priceStr =
     product.price.current > 0
-      ? `${product.price.currency === "INR" ? "₹" : "$"}${product.price.current.toLocaleString()}`
+      ? `${product.price.currency === "INR" ? "Rs." : "$"}${product.price.current.toLocaleString()}`
       : "Check Price";
 
   if (variant === "compact") {
     return (
       <div className={cn("flex items-start gap-3 p-3 bg-white border border-brand-200 rounded-lg", className)}>
-        <div className="w-14 h-14 rounded-md bg-brand-100 shrink-0 overflow-hidden flex items-center justify-center text-brand-400 text-xs">
+        <div className="w-14 h-14 rounded-md bg-brand-100 shrink-0 overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={product.productImage || "/placeholder.svg"}
             alt={product.name}
             className="object-cover w-full h-full"
-            onError={(e) => { (e.target as HTMLImageElement).src = "/placeholder.svg"; }}
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = "/placeholder.svg";
+            }}
           />
         </div>
         <div className="flex-1 min-w-0">
           <p className="text-xs text-brand-500 truncate">{product.brand || product.category}</p>
-          <Link href={`/products/${product.slug}`} className="text-sm font-semibold text-brand-900 hover:underline line-clamp-1">
+          <Link
+            href={`/products/${product.slug}`}
+            className="text-sm font-semibold text-brand-900 hover:underline line-clamp-1"
+          >
             {product.name}
           </Link>
           <div className="flex items-center gap-2 mt-1">
@@ -77,20 +77,30 @@ export function ProductCard({ product, variant = "default", className }: Product
 
   if (variant === "horizontal") {
     return (
-      <div className={cn("flex gap-4 p-4 bg-white border border-brand-200 rounded-xl hover:shadow-soft transition-shadow", className)}>
+      <div
+        className={cn(
+          "flex gap-4 p-4 bg-white border border-brand-200 rounded-xl hover:shadow-soft transition-shadow",
+          className
+        )}
+      >
         <div className="w-24 h-24 rounded-lg bg-brand-100 shrink-0 overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={product.productImage || "/placeholder.svg"}
             alt={product.name}
             className="object-cover w-full h-full"
-            onError={(e) => { (e.target as HTMLImageElement).src = "/placeholder.svg"; }}
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = "/placeholder.svg";
+            }}
           />
         </div>
         <div className="flex flex-col justify-between flex-1 min-w-0">
           <div>
             <p className="text-xs text-brand-500">{product.brand}</p>
-            <Link href={`/products/${product.slug}`} className="font-serif font-bold text-brand-900 text-sm leading-snug hover:underline line-clamp-2">
+            <Link
+              href={`/products/${product.slug}`}
+              className="font-serif font-bold text-brand-900 text-sm leading-snug hover:underline line-clamp-2"
+            >
               {product.name}
             </Link>
             {product.bestFor && (
@@ -108,10 +118,15 @@ export function ProductCard({ product, variant = "default", className }: Product
                 rel="nofollow sponsored noopener"
                 className="text-xs font-medium bg-brand-800 text-white px-3 py-1 rounded-md hover:bg-brand-900 transition-colors"
               >
-                Check Product →
+                Check Product &rarr;
               </Link>
             ) : (
-              <Link href={`/products/${product.slug}`} className="text-xs text-brand-600 hover:underline">Details →</Link>
+              <Link
+                href={`/products/${product.slug}`}
+                className="text-xs text-brand-600 hover:underline"
+              >
+                Details &rarr;
+              </Link>
             )}
           </div>
         </div>
@@ -121,7 +136,12 @@ export function ProductCard({ product, variant = "default", className }: Product
 
   if (variant === "featured") {
     return (
-      <div className={cn("flex flex-col bg-white border-2 border-brand-300 rounded-xl overflow-hidden shadow-soft", className)}>
+      <div
+        className={cn(
+          "flex flex-col bg-white border-2 border-brand-300 rounded-xl overflow-hidden shadow-soft",
+          className
+        )}
+      >
         <div className="relative aspect-square bg-brand-100 overflow-hidden">
           {product.featured && (
             <span className="absolute top-2 left-2 z-10 text-xs font-semibold bg-brand-800 text-white px-2 py-0.5 rounded-full">
@@ -133,20 +153,28 @@ export function ProductCard({ product, variant = "default", className }: Product
             src={product.productImage || "/placeholder.svg"}
             alt={product.name}
             className="object-cover w-full h-full"
-            onError={(e) => { (e.target as HTMLImageElement).src = "/placeholder.svg"; }}
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = "/placeholder.svg";
+            }}
           />
         </div>
         <div className="p-5 flex flex-col flex-grow">
-          <p className="text-xs text-brand-500 uppercase tracking-wider font-semibold mb-1">{product.brand}</p>
+          <p className="text-xs text-brand-500 uppercase tracking-wider font-semibold mb-1">
+            {product.brand}
+          </p>
           <Link href={`/products/${product.slug}`}>
-            <h3 className="font-serif font-bold text-brand-900 text-lg leading-tight mb-2 hover:underline">{product.name}</h3>
+            <h3 className="font-serif font-bold text-brand-900 text-lg leading-tight mb-2 hover:underline">
+              {product.name}
+            </h3>
           </Link>
           {product.problemSolved && (
             <p className="text-xs text-brand-600 mb-3 bg-brand-50 rounded-md px-3 py-2 border-l-2 border-brand-300">
               <strong>Solves:</strong> {product.problemSolved}
             </p>
           )}
-          <p className="text-sm text-brand-700 line-clamp-2 flex-grow mb-4">{product.shortDescription}</p>
+          <p className="text-sm text-brand-700 line-clamp-2 flex-grow mb-4">
+            {product.shortDescription}
+          </p>
           <div className="flex items-center justify-between gap-2 mt-auto">
             <span className="text-lg font-bold text-brand-900">{priceStr}</span>
             {hasAffiliate ? (
@@ -159,7 +187,12 @@ export function ProductCard({ product, variant = "default", className }: Product
                 Check Product
               </Link>
             ) : (
-              <Link href={`/products/${product.slug}`} className="text-sm text-brand-700 underline">Details</Link>
+              <Link
+                href={`/products/${product.slug}`}
+                className="text-sm text-brand-700 underline"
+              >
+                Details
+              </Link>
             )}
           </div>
         </div>
@@ -169,15 +202,25 @@ export function ProductCard({ product, variant = "default", className }: Product
 
   // Default card
   return (
-    <div className={cn("group flex flex-col bg-white border border-brand-200 rounded-xl overflow-hidden hover:shadow-soft hover:border-brand-300 transition-all", className)}>
-      <Link href={`/products/${product.slug}`} className="relative aspect-square bg-brand-100 overflow-hidden block">
+    <div
+      className={cn(
+        "group flex flex-col bg-white border border-brand-200 rounded-xl overflow-hidden hover:shadow-soft hover:border-brand-300 transition-all",
+        className
+      )}
+    >
+      <Link
+        href={`/products/${product.slug}`}
+        className="relative aspect-square bg-brand-100 overflow-hidden block"
+      >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={product.productImage || "/placeholder.svg"}
           alt={product.name}
           className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
           loading="lazy"
-          onError={(e) => { (e.target as HTMLImageElement).src = "/placeholder.svg"; }}
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = "/placeholder.svg";
+          }}
         />
         {product.featured && (
           <span className="absolute top-2 left-2 text-xs font-semibold bg-brand-800 text-white px-2 py-0.5 rounded-full">
@@ -186,11 +229,17 @@ export function ProductCard({ product, variant = "default", className }: Product
         )}
       </Link>
       <div className="p-4 flex flex-col flex-grow">
-        <p className="text-xs text-brand-500 uppercase tracking-wider font-semibold mb-1">{product.brand || product.category}</p>
+        <p className="text-xs text-brand-500 uppercase tracking-wider font-semibold mb-1">
+          {product.brand || product.category}
+        </p>
         <Link href={`/products/${product.slug}`} className="hover:underline">
-          <h3 className="font-serif font-bold text-brand-900 text-sm leading-snug mb-2">{product.name}</h3>
+          <h3 className="font-serif font-bold text-brand-900 text-sm leading-snug mb-2">
+            {product.name}
+          </h3>
         </Link>
-        <p className="text-xs text-brand-600 line-clamp-2 flex-grow mb-3">{product.shortDescription}</p>
+        <p className="text-xs text-brand-600 line-clamp-2 flex-grow mb-3">
+          {product.shortDescription}
+        </p>
         <div className="flex items-center justify-between gap-2 mt-auto">
           <span className="text-sm font-bold text-brand-900">{priceStr}</span>
           {hasAffiliate ? (
@@ -200,11 +249,14 @@ export function ProductCard({ product, variant = "default", className }: Product
               rel="nofollow sponsored noopener"
               className="text-xs font-medium bg-brand-800 text-white px-3 py-1.5 rounded-md hover:bg-brand-900 transition-colors"
             >
-              Check →
+              Check &rarr;
             </Link>
           ) : (
-            <Link href={`/products/${product.slug}`} className="text-xs text-brand-700 border border-brand-200 px-3 py-1.5 rounded-md hover:bg-brand-50 transition-colors">
-              Details →
+            <Link
+              href={`/products/${product.slug}`}
+              className="text-xs text-brand-700 border border-brand-200 px-3 py-1.5 rounded-md hover:bg-brand-50 transition-colors"
+            >
+              Details &rarr;
             </Link>
           )}
         </div>
@@ -213,8 +265,6 @@ export function ProductCard({ product, variant = "default", className }: Product
   );
 }
 
-// ─── ProductComparison ────────────────────────────────────────────────────────
-
 interface ComparisonProps {
   title: string;
   budgetPick: ProductCardData;
@@ -222,7 +272,12 @@ interface ComparisonProps {
   className?: string;
 }
 
-export function ProductComparison({ title, budgetPick, premiumPick, className }: ComparisonProps) {
+export function ProductComparison({
+  title,
+  budgetPick,
+  premiumPick,
+  className,
+}: ComparisonProps) {
   return (
     <div className={cn("rounded-xl border border-brand-200 overflow-hidden", className)}>
       <div className="bg-brand-50 px-4 py-3 border-b border-brand-200">
@@ -246,9 +301,13 @@ export function ProductComparison({ title, budgetPick, premiumPick, className }:
   );
 }
 
-// ─── TrendingProduct ──────────────────────────────────────────────────────────
-
-export function TrendingProduct({ product, rank }: { product: ProductCardData; rank: number }) {
+export function TrendingProduct({
+  product,
+  rank,
+}: {
+  product: ProductCardData;
+  rank: number;
+}) {
   return (
     <div className="flex items-center gap-4 p-3 bg-white border border-brand-200 rounded-xl hover:shadow-soft transition-shadow">
       <span className="text-2xl font-serif font-bold text-brand-200 w-8 text-center shrink-0">
@@ -258,9 +317,6 @@ export function TrendingProduct({ product, rank }: { product: ProductCardData; r
     </div>
   );
 }
-
-// ─── ProductRecommendationSection ─────────────────────────────────────────────
-// Drop this into any article to create a "Products That Can Help" section
 
 interface ProductSectionProps {
   products: ProductCardData[];
@@ -298,7 +354,9 @@ export function ProductRecommendationSection({
       </div>
       <p className="text-xs text-brand-500 mt-4">
         *Prices are approximate and may vary. Always verify on the merchant&apos;s website.{" "}
-        <Link href="/how-we-choose" className="underline hover:text-brand-700">How we choose products.</Link>
+        <Link href="/how-we-choose" className="underline hover:text-brand-700">
+          How we choose products.
+        </Link>
       </p>
     </section>
   );
