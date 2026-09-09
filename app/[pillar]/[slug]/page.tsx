@@ -7,13 +7,9 @@ import { PILLAR_META } from "../page";
 
 // ─── generateStaticParams ──────────────────────────────────────────────────────
 
-export async function generateStaticParams({
-  params,
-}: {
-  params: { pillar: string };
-}) {
-  const articles = getAllArticles().filter((a) => a.pillar === params.pillar);
-  return articles.map((a) => ({ slug: a.slug }));
+export async function generateStaticParams() {
+  const articles = getAllArticles();
+  return articles.map((a) => ({ pillar: a.pillar, slug: a.slug }));
 }
 
 // ─── generateMetadata ──────────────────────────────────────────────────────────
